@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff72740a-54c0-4179-9af9-76986c104f16" name="Changes" comment="register client function">
+    <list default="true" id="ff72740a-54c0-4179-9af9-76986c104f16" name="Changes" comment="create client">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -155,13 +155,22 @@
       <option name="project" value="LOCAL" />
       <updated>1711575569642</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="create client">
+      <option name="closed" value="true" />
+      <created>1711575623660</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1711575623660</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
     <MESSAGE value="menu loop with functions for each option" />
     <MESSAGE value="register client function" />
-    <option name="LAST_COMMIT_MESSAGE" value="register client function" />
+    <MESSAGE value="create client" />
+    <option name="LAST_COMMIT_MESSAGE" value="create client" />
   </component>
 </project>
