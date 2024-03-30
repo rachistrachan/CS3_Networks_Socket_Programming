@@ -64,10 +64,28 @@ def send_and_return(msg):
         # Optionally, perform cleanup here, like closing the socket.
         client.close()
 
+# Client's registration process
+# Starts a thread for listening to incoming UDP messagess
+def register_client_loop():
+    global listen_port
+    while True:
+        try:
+            nickname = input("Enter nickname: ").lower()  # nickname to lower for consistency
+            response = send_and_return(f"{REGISTER}{nickname}")  # return 'NAME_TAKEN' if not successful
+
+            if "NAME_TAKEN" in response:
+                print("Nickname is already taken, please choose another.")
+                continue  # re-enter loop
+            else:
+                print(response)
+                listen_port = int(response.split(':')[-1].strip())
+                threading.Thread(target=listen_for_peers, daemon=True).start()
+                break
+        except Exception as e:
+            print(f"An error occurred during registration: {e}")
+
 
 # Main loop for client to interact with server
-def register_client_loop():
-    pass
 
 
 def query_client():

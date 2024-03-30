@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff72740a-54c0-4179-9af9-76986c104f16" name="Changes" comment="client main loop to interact with server">
+    <list default="true" id="ff72740a-54c0-4179-9af9-76986c104f16" name="Changes" comment="client sends message to server using tcp connection">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/client.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +188,23 @@
       <option name="project" value="LOCAL" />
       <updated>1711635790264</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="handles client request to query information of another client">
+      <option name="closed" value="true" />
+      <created>1711799944064</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1711799944064</updated>
+    </task>
+    <task id="LOCAL-00009" summary="client sends message to server using tcp connection">
+      <option name="closed" value="true" />
+      <created>1711800026675</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1711800026675</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -199,6 +215,8 @@
     <MESSAGE value="function to disconnect client from tcp server connection" />
     <MESSAGE value="main function" />
     <MESSAGE value="client main loop to interact with server" />
-    <option name="LAST_COMMIT_MESSAGE" value="client main loop to interact with server" />
+    <MESSAGE value="handles client request to query information of another client" />
+    <MESSAGE value="client sends message to server using tcp connection" />
+    <option name="LAST_COMMIT_MESSAGE" value="client sends message to server using tcp connection" />
   </component>
 </project>
