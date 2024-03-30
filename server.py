@@ -124,6 +124,30 @@ def list_clients(conn):
 
 # main function that starts the server listening for incoming connections
 # Accepts connections: starting a new thread to handle each client
+# Handles client requests to query information about another client
+# IP address and port for direct communication.
+def query_client(msg, conn):
+    # Extract the nickname from the message
+    nickname = msg[len(QUERY_CLIENT):]
+    try:
+        if nickname in clients:
+            # Assuming client_info structure is [ip, port]
+            client_info = clients[nickname]
+            # Ensure client_info can be unpacked safely
+            if len(client_info) >= 2:
+                response = f"{client_info[0]}:{client_info[1]}"
+                conn.send(response.encode(FORMAT))
+                print(response)
+            else:
+                # Handle unexpected client_info format
+                raise ValueError("Unexpected client_info format")
+        else:
+            # Handle client not found
+            raise KeyError("Client not found")
+    except (KeyError, ValueError) as e:
+        print(f"Error: {e}")
+        conn.send("Client not found.".encode(FORMAT))
+
 def start():
     try:
         server.listen()
