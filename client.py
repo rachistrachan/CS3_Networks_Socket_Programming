@@ -84,14 +84,63 @@ def register_client_loop():
         except Exception as e:
             print(f"An error occurred during registration: {e}")
 
+# Listens for incoming UDP messages from peers and prints them
+def listen_for_peers():
+    global is_in_chat_mode
+    if listen_port is not None:
+        udp_socket.bind(("0.0.0.0", listen_port))  # Bind to the provided port
+        print(f"Listening for messages on port {listen_port}...")
+    while True:
+        try:
+            message, addr = udp_socket.recvfrom(1024)  # Buffer size is 1024 bytes
+            print(f"Message from {addr}: {message.decode()}")
+        except socket.error as e:
+            print("Error receiving message: The server may have stopped.")
+            is_in_chat_mode = False
+            # Perform necessary cleanup
+            client.close()
+            break
+# Sends a UDP message to a specified peer
+def send_message_to_peer(ip, port, msg):  # send message to peer
+    try:
+        udp_socket.sendto(msg.encode(), (ip, int(port)))
+    except socket.error as e:
+        print(f"Failed to send message to {ip}:{port} due to socket error: {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred while sending message to {ip}:{port}: {e}")
+
+
+# Handles querying the server for a specific client's details
+# Initiates P2P chat session and sending messages via UDP
+def query_client():
+    global has_requested_list, is_in_chat_mode
+    try:
+        if has_requested_list:  # Check the flag before allowing the query
+            nickname = input("Input name of client you would like to connect with: \n").lower()
+            response = send_and_return(f"{QUERY_CLIENT}{nickname}")
+            if "Client not found" not in response:
+                peer_ip, peer_port = response.split(":")
+                print(f"Starting chat with *** {nickname} *** You can now send messages. Type 'Exit' to stop.")
+                is_in_chat_mode = True
+                while is_in_chat_mode:
+                    message = input(">>> ")
+                    if message.lower() == DISCONNECT_MESSAGE.lower():
+                        is_in_chat_mode = False
+                    else:
+                        try:
+                            send_message_to_peer(peer_ip, peer_port, message)
+                        except Exception as e:
+                            print(f"An error occurred while sending message: {e}")
+                            break  # Exiting chat mode on error, but you can choose to handle this differently.
+            else:
+                print(response)
+        else:
+            print("Please request and view the list of available clients first.")
+    except Exception as e:
+        print(f"An error occurred during querying client: {e}")
+
 
 # Main loop for client to interact with server
-
-
-def query_client():
-    pass
-
-
 def start():
     global is_in_chat_mode, has_requested_list
     try:
